@@ -1,9 +1,7 @@
 ## This note is for docker and kubernates
 ##
 # limit localhost access for container
-'''
-docker run -p 127.0.0.1:1234:80 -d -v /var/www/:/usr/share/nginx/html nginx:1.9
-'''
+$ sudo docker run -p 127.0.0.1:1234:80 -d -v /var/www/:/usr/share/nginx/html nginx:1.9
 
 # Docker restart policy
 ## Docker provides restart policies to control whether your containers start automatically when they exit, or when Docker restarts. Restart policies start linked containers in the correct order. Docker recommends that you use restart policies, and avoid using process managers to start containers.
@@ -16,14 +14,8 @@ docker run -p 127.0.0.1:1234:80 -d -v /var/www/:/usr/share/nginx/html nginx:1.9
 * always	Always restart the container if it stops. If it's manually stopped, it's restarted only when Docker daemon restarts or the container itself is manually restarted. (See the second bullet listed in restart policy details)
 * unless-stopped	Similar to always, except that when the container is stopped (manually or otherwise), it isn't restarted even after Docker daemon restarts.
 ## The following command starts a Redis container and configures it to always restart, unless the container is explicitly stopped, or the daemon restarts.
-'''
 $ sudo docker run -d --restart unless-stopped redis
-'''
 ## The following command changes the restart policy for an already running container named redis.
-'''
 $ sudo docker update --restart unless-stopped redis
-'''
 ## The following command ensures all running containers restart.
-'''
-$ sudo docker update --restart unless-stopped $(docker ps -q)**
-'''
+$ sudo docker update --restart unless-stopped $(docker ps -q)
